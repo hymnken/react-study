@@ -1,32 +1,69 @@
 import React, { useState } from "react";
 import 'antd/dist/reset.css';
-import { PlayCircleOutlined } from '@ant-design/icons'
-import { Button, Space, Switch, Rate } from 'antd';
+import { Button, Space, Switch, Rate, Checkbox, Form, Input } from 'antd';
 function App() {
-  const [checked, setChecked] = useState(true)
-  const [value, setValue] = useState(3)
+  const [username, setUsername] = useState('xiaoming')
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
+  const handleChange = (values) => {
+    setUsername(values)
+  }
   return (
-    <>
-      <div className="App">
-        <h2>hello react</h2>
-      </div>
-      <h3>12312311111</h3>
+    <div>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        style={{
+          maxWidth: 600,
+        }}
+        initialValues={{
+          username
+        }}
+        onFinish={onFinish}
+        onValuesChange={handleChange}
+      >
+        <Form.Item
+          label="用户名"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <PlayCircleOutlined />
-      <Space>
-        <Button type="primary">Primary Button</Button>
-        <Button danger icon={<PlayCircleOutlined />}>
-          Primary
-        </Button>
-      </Space>
-      <br />
-      <Switch checked={checked} onChange={setChecked} />
-      {checked ? 'on' : 'off'}
-      <br />
-      <Rate value={value} onChange={setValue} />
-      pingfen{ value }
-    </>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
 
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+        {username}
+      </Form>
+    </div>
   );
 }
 
