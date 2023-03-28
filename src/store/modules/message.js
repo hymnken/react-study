@@ -1,14 +1,22 @@
-function messageReducer(state = { msg: 'hello' }, action) {
-    switch (action.type) {
-        case 'message/change':
-            /*  // state.count++  // 不符合纯函数的概念/*  */
-            const msg = action.payload
-            return { msg,upperMsg:msg.toUpperCase() }
-        default:
-            state.upperMsg = state.msg.toUpperCase()
-            return state;
-    }
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+    msg: 'hello'
 }
 
+const messageSlice = createSlice({
+    // dispatch('message/change')
+    name: 'message',
+    initialState: {
+        ...initialState,
+        upperMsg: initialState.msg.toUpperCase()
+    },
+    reducers: {
+        change(state, action) {
+            state.msg = action.payload
+            state.upperMsg = state.msg.toUpperCase()
+        }
+    }
+})
 
-export default messageReducer
+export default messageSlice.reducer

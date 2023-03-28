@@ -17,12 +17,14 @@ export default store */
 
 import {configureStore} from '@reduxjs/toolkit'
 import counterReducer from './modules/counter'
+import messageReducer from './modules/message'
 
 
 const store = configureStore({
     reducer: {
         // state.counter.count
-        counter:counterReducer
+        counter: counterReducer,
+        message: messageReducer
     }
 })
 

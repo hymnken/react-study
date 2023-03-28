@@ -29,6 +29,8 @@ import { useSelector, useDispatch } from 'react-redux'
 export default function Foo() {
   const count = useSelector((state) => state.counter.count)
   const doubleCount = useSelector((state) => state.counter.doubleCount)
+  const msg = useSelector((state) => state.message.count)
+  const upperMsg = useSelector((state) => state.message.upperMsg)
   const dispatch = useDispatch()
 
   const handleClick = () => {
@@ -36,11 +38,15 @@ export default function Foo() {
       type: 'counter/inc',
       payload: 5
     })
+    dispatch({
+      type: 'message/change',
+      payload: 'hi'
+    })
   }
   return (
     <div>
       <button onClick={handleClick}>点击</button>
-      <div>Foo,{count},{doubleCount}</div>
+      <div>Foo,{count},{doubleCount},{msg},{upperMsg}</div>
     </div>
   )
 }
