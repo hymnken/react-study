@@ -1,17 +1,14 @@
-import { createStore } from './../../node_modules/redux/src/createStore';
+import { createStore , combineReducers,applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
+import counterReducer from './modules/counter';
+import messageReducer from './modules/message';
+import thunk from 'redux-thunk';
 
 
-function counterReducer(state = { count: 0 }, action) {
-    switch (action.type) {
-        case 'inc':
-            /*  // state.count++  // 不符合纯函数的概念/*  */
-            return { count: state.count + 1 }
-        default:
-            return state;
-    }
-}
 
-const store = createStore(counterReducer, composeWithDevTools())
+const store = createStore(combineReducers({
+    counter: counterReducer,
+    message: messageReducer
+}), composeWithDevTools(applyMiddleware(thunk)))
 
 export default store

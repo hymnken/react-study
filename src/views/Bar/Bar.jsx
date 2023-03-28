@@ -16,9 +16,10 @@
 
 import React from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 export default function Bar() {
-
+  const count = useSelector((state) => state.counter.count)
   return (
-    <div>Bar</div>
+    <div>Bar,{count}</div>
   )
 }
