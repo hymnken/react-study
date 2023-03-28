@@ -28,33 +28,19 @@ import { useSelector, useDispatch } from 'react-redux'
 
 export default function Foo() {
   const count = useSelector((state) => state.counter.count)
-  const msg = useSelector((state) => state.message.msg)
-  const upperMsg = useSelector((state) => state.message.upperMsg)
   const doubleCount = useSelector((state) => state.counter.doubleCount)
   const dispatch = useDispatch()
+
   const handleClick = () => {
-/*     dispatch({
+    dispatch({
       type: 'counter/inc',
       payload: 5
-    })
-    dispatch({
-      type: 'message/change',
-      payload: 'hi'
-    }) */
-
-    dispatch((dispatch) => {
-      setTimeout(() => {
-        dispatch({
-          type: 'counter/inc',
-          payload:5
-        })
-      },2000)
     })
   }
   return (
     <div>
       <button onClick={handleClick}>点击</button>
-      <div>Foo,{count},{doubleCount},{msg},{upperMsg}</div>
+      <div>Foo,{count},{doubleCount}</div>
     </div>
   )
 }
